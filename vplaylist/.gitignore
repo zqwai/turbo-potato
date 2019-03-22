@@ -12,3 +12,11 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+# vue-cli public
+build/
+config/
+.babelrc
+.editorconfig
+.postcssrc.js
+
