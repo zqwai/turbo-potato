@@ -14,9 +14,9 @@ yarn-error.log*
 *.sln
 
 # vue-cli public
-build/
-config/
-.babelrc
-.editorconfig
-.postcssrc.js
+# build/
+# config/
+# .babelrc
+# .editorconfig
+# .postcssrc.js
 
