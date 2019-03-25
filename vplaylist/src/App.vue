@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <AppHeader v-bind:navs="navs" v-bind:logo="logo"></AppHeader>
+    <AppHeader v-bind:navs="navs" v-bind:urlHome="urlHome"></AppHeader>
     <router-view/>
     <AppFooter></AppFooter>
   </div>
@@ -20,9 +20,9 @@ export default {
   data(){
     return {
       // routers: routers
-      logo: 
+      urlHome: 
         {
-          path: require('@/assets/images/logo.png'),
+          path: '/',
           name: 'vue demo'
         },
       navs:[
@@ -39,9 +39,8 @@ export default {
   },
 }
 </script>
-<style scoped>
-#app{
-  margin-top: 60px
-}
+<style lang="stylus">
+#app
+  width 100%
 </style>
 

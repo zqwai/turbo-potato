@@ -1,12 +1,41 @@
+// Varables
+$white = #fff
+$color-f0 = #f0f0f0
+$color-f2 = #f2f2f2
+$color-ccc = #ccc
+$color-666 = #666
+$color-link = #2c3e50
+
+
+$font-family = 'Avenir' Helvetica Arial sans-serif
+
+$font-size = 12px
+
+border-radius(n)
+  -webkit-border-radius n
+  -moz-border-radius n
+  border-radius n
+
+// public
+*
+  box-sizing border-box
+
+*:before,
+*:after 
+  box-sizing border-box
+
+
 html
 body
-  font-family 'Avenir' Helvetica Arial sans-serif
+  font-family $font-family
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   text-align center
-  color #2c3e50
+  color $color-link
   margin 0
   padding 0
+  font-size $font-size
+  background-color $color-f0
 h1
 h2 
   font-weight normal
@@ -18,6 +47,43 @@ li
   margin 0 10px
 a 
   color #42b983
+  text-decoration none
 
 .weight
   font-weight bold
+// btn
+.btn
+  display inline-block
+  padding .3rem .5rem
+  border none 
+  background-color #f2f2f2
+  color #666666
+  border-radius .5rem
+  font-size 1rem
+  cursor pointer
+  line-height: 1.6rem
+.btn:hover
+.btn:focus
+  outline none 
+  background-color #f0f0f0
+.btn-red
+  background-color #f10
+  color #fff
+.btn-red:hover
+.btn-red:focus
+  background-color #f60
+.btn-skyblue
+  background-color #039be5
+  color #fff
+.btn-skyblue:hover
+.btn-skyblue:focus
+  background-color hsla(200,50%,50%,1)
+.btn-sm
+  padding .3rem .5rem
+.btn-md
+  padding .5rem .1rem
+.btn-lg
+  padding 1rem 2rem
+
+.mr-1rem
+  margin-right 1rem

@@ -1,6 +1,6 @@
 <template>
   <div class="add-blog">
-    <h5>添加博客</h5>
+    <h5>编辑博客</h5>
     <div class="form">
       <form v-if="!submited">
         <div class="form-cont">
@@ -24,10 +24,10 @@
             </option>
           </select>
         </div>
-        <button class="sumbit" @click.prevent="post">添加博客</button>
+        <button class="sumbit" @click.prevent="post">修改博客</button>
       </form>
       <div v-if="submited">
-        博客发布成功！！！
+        博客修改成功！！！
       </div>
     </div>
     <div class="preview">
@@ -63,20 +63,29 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'addblog',
+  name: 'editblog',
   data () {
     return {
       submited: false,
+      id: this.$route.params.id,
       blog:{
-        title:'',
-        content:'',
-        categories: [],
-        auther: '',
+        // title:'',
+        // content:'',
+        // categories: [],
+        // auther: '',
       },
       autheres: ['大山','菲菲','雯雯','丽丽',],
     }
   },
   methods:{
+    fetchData(){
+        let vm = this
+        console.log(vm.id)
+        axios.get('/posts/' + vm.id +'.json')
+            .then(response => {
+                vm.blog = response.data
+            })
+    },
     post:function(){
       let vm = this
       // http://jsonplaceholder.typicode.com/
@@ -86,12 +95,15 @@ export default {
       // vm.$http.post('https://zqwde2013.firebaseio.com/posts.json',this.blog)
 
       // axios
-      axios.post('/posts.json',vm.blog)
+      axios.put('/posts/' + vm.id +'.json',vm.blog)
       .then((data) => {
-        // console.log(data)
+        console.log(data)
         vm.submited = true
       })
-    }
+    },
+  },
+  created(){
+      this.fetchData()
   }
 }
 </script>

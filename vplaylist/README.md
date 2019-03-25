@@ -1,14 +1,14 @@
 # vplaylist
 
-> Vue test
+> Vue 博客搭建，包含添加、修改、删除博客，及博客列表，
+> 基于vue-cl1 2 + vue-router + axios + firebase(需要翻墙)
+> 构建代码仅用于参考，更多细节后期完善。
 
 ## Build Setup
 
 ``` bash
-# install dependencies
-npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload 
 npm run dev
 
 # build for production with minification
@@ -18,4 +18,3 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
