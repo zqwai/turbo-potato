@@ -1,0 +1,7 @@
+    {
+        "name": "primary skin",
+        "skin": "primary",
+        "skinstatus": "dark",
+        "nav": "primary lighten-1",
+        "footer": "primary lighten-2"
+    }

@@ -1,0 +1,14 @@
+{
+    "name": "气味视界",
+    "author": "气味",
+    "version": "1.0.0",
+    "keywords": [
+        "vue",
+        "yran",
+        "stylus",
+        "es6"
+      ],
+    "description": "vue weyran stylus es6",
+    "baseurl": "/"
+
+}
