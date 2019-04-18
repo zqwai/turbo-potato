@@ -31,7 +31,7 @@
             <span class="flex-grow-1">{{item.name}} </span>
             <button
             class="btn btn-light btn-sm "
-            @click="removeListData()">删除</button>
+            @click="removeListData()"><i class="fa fa-trash-o"></i> 删除</button>
         </li>
       </ul>
     </div>
@@ -71,6 +71,8 @@
 <script>
 // @ is an alias to /src
 // import Client from '@/components/Client.vue';
+import storage from '../model/storage';
+// import axios from 'axios';
 
 export default {
   name: 'home',
@@ -107,7 +109,8 @@ export default {
         this.errTipText = '空内容不能添加';
         return false;
       }
-      localStorage.setItem('list', JSON.stringify(this.list));
+      storage.set('list', this.list);
+      return this.list;
     },
     keydoAdd(e) {
       // console.log(e);
@@ -126,25 +129,27 @@ export default {
           this.errTipText = '空内容不能添加';
           return false;
         }
-        localStorage.setItem('list', JSON.stringify(this.list));
+        storage.set('list', this.list);
         // console.log(this.list);
       } else {
         return false;
       }
+      return e;
     },
     removeListData(key) {
       // splice() 操作数组的方法
       this.list.splice(key, 1);
       // console.log(this.list);
-      localStorage.setItem('list', JSON.stringify(this.list));
+      storage.set('list', this.list);
     },
     saveListDta() {
-      localStorage.setItem('list', JSON.stringify(this.list));
+      storage.set('list', this.list);
+      // axios.post('http://localhost:2000/messages',)
     },
   },
   mounted() {
     // console.log('mounted');
-    const list = JSON.parse(localStorage.getItem('list'));
+    const list = storage.get('list', this.list);
     if (list) {
       this.list = list;
     }
@@ -165,7 +170,7 @@ a {
   color: #42b983;
 }
 .wrap-form{
-  width: 800px;
+  width: 80%;
   margin: 0 auto;
   padding: 20px;
 }

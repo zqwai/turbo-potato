@@ -1,5 +1,5 @@
 <template>
-    <p class="text-center">
+    <p class="text-center pt-5">
         &copy; {{anther}}
         <em>{{ new Date().getFullYear() + 10 }}</em>.
     </p>

@@ -3,7 +3,7 @@ const cors = require ('cors')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 
-const userdb = require('./db/userdb/userListModle');
+const messages = require('./db/messages');
 
 const app = express()
 
@@ -17,18 +17,18 @@ app.get('/',(req, res) => {
     })
 })
 
-app.get('/userdb', (req, res) =>{
-    userdb.getAll().then((userdb) =>{
-        res.json(userdb)
+app.get('/messages', (req, res) =>{
+    messages.getAll().then((messages) =>{
+        res.json(messages)
     })
 })
 
-app.post('/userdb',(req, res) =>{
+app.post('/messages',(req, res) =>{
     
     console.log(req.body);
 
-    userdb.create(req.body).then((user) => {
-        res.json(user);
+    messages.create(req.body).then((message) => {
+        res.json(message);
     }).catch((error) => {
         res.status(500);
         res.json(error);
@@ -36,7 +36,7 @@ app.post('/userdb',(req, res) =>{
     
 })
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 2000
 
 app.listen(port, () => {
     console.log(`listening on http://localhost:${port}`);

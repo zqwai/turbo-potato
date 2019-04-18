@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>todo list</title>
+
+  <!-- css -->
+  <link rel="stylesheet" href="./assets/styles.css">
+  <!-- js -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.0/jquery.min.js"></script>
+  <script src="./assets/todo-list.js"></script>
+</head>
+<body>
+  <div class="todo-table clearfix">
+    <form>
+      <div class="clearfix">
+        <input type="text" name="item" placeholder="add new item" required>
+        <button type="submit">Add Item</button>
+      </div>
+    </form>
+    <ul class="clearfix">
+        <% todos.forEach(function(todo){ %>
+          <li><%- todo.item %></li>
+        <% }); %>
+    </ul>
+  </div>
+</body>
+</html>

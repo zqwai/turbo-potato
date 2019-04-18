@@ -1,12 +1,8 @@
 <template>
   <div id="app">
-    
     <AppHeader />
-
     <router-view/>
-
     <AppFooter />
-
   </div>
 </template>
 <script>
@@ -17,12 +13,12 @@ export default {
   name: 'App',
   components: {
     AppHeader,
-    AppFooter
+    AppFooter,
   },
   // data(){
   //   return {
   //     data: '',
   //   }
   // }
-}
+};
 </script>
