@@ -10,6 +10,8 @@
 
 [demo](https://zqwai.github.io/vcli/vplaylist/dist/index.html)
 
-## m_server
+## vue-play 
 
-> node express mongodb server
+> 音乐播放器app [目前处于ui部分设计]
+
+基于v-cli3 + vuetify 构建
