@@ -13,7 +13,7 @@
 import ListHeader from '@/components/list/ListHeader'
 
 export default {
-  name: 'list',
+  name: 'lists',
   components: {
     ListHeader,
   },

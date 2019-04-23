@@ -4,7 +4,7 @@
   >
 
     <v-list two-line subheader>
-      <v-subheader inset>基本信息</v-subheader>
+      <v-subheader>基本信息</v-subheader>
 
       <v-list-tile
         v-for="item in items"
@@ -27,9 +27,9 @@
         </v-list-tile-action>
       </v-list-tile>
 
-      <v-divider inset></v-divider>
+      <v-divider></v-divider>
 
-      <v-subheader inset>关于我们</v-subheader>
+      <v-subheader>关于我们</v-subheader>
 
       <v-list-tile
         v-for="item in items2"

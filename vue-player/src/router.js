@@ -14,8 +14,8 @@ export default new Router({
       component: Home
     },
     {
-      path: '/list',
-      name: 'list',
+      path: '/lists',
+      name: 'lists',
       component: () => import('./views/List.vue'),
       children: [
         {

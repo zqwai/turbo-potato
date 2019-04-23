@@ -15,8 +15,11 @@
     </v-carousel>
     <!-- /carousel -->
 
-    <Home></Home>
-    <SongList></SongList>
+    <Home />
+
+    <SongList />
+
+    <Vfooter />
     
   </section>
 </template>
@@ -26,13 +29,15 @@
 import Vheader from '@/components/public/Vheader'
 import Home from '@/components/home/Home.vue'
 import SongList from '@/components/list/SongList.vue'
+import Vfooter from '@/components/public/Vfooter'
 
 export default {
   name: 'home',
   components: {
     Vheader,
     Home,
-    SongList
+    SongList,
+    Vfooter,
   },
   data () {
     return {

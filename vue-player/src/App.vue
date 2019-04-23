@@ -7,7 +7,7 @@
 
     <v-content>
       <router-view></router-view>
-      <Vfooter />
+      
       </v-content>
 
     <VBottomNav />
@@ -18,12 +18,10 @@
 </template>
 
 <script>
-import Vfooter from '@/components/public/Vfooter'
 import VBottomNav from '@/components/public/VBottomNav'
 export default {
   name: 'App',
   components: {
-    Vfooter,
     VBottomNav,
   },
   data () {
