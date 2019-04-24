@@ -1,9 +1,9 @@
 <template>  
-  
-  <v-card>
+<v-layout relative>
 
+  <v-card>
     <v-list subheader>
-      <v-subheader >A</v-subheader>
+      <v-subheader >热门</v-subheader>
       <v-list-tile
         v-for="(artist, index) in artists"
         :key="index"
@@ -24,50 +24,49 @@
 
       </v-list-tile>
     </v-list>
-
     <v-divider></v-divider>
-
-    <v-list subheader>
-      <v-subheader>B</v-subheader>
-
-      <v-list-tile
-        v-for="item in items2"
-        :key="item.title"
-        avatar
-        
-      >
-        <v-list-tile-avatar>
-          <img :src="item.avatar">
-        </v-list-tile-avatar>
-
-        <v-list-tile-content>
-          <v-list-tile-title v-html="item.title"></v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
   </v-card>
 
+
+  <v-navigation-drawer
+    v-model="drawer"
+    class="pb-0"
+    hide-overlay
+    stateless
+    width="64"
+    temporary
+    right
+    fixed
+    height="310"
+    style="top:104px"
+  >
+    <v-layout >
+      <v-list class="grow">
+        <v-list-tile
+          v-for="(tag, index) in tags"
+          :key="index"
+        >
+          <v-list-tile-title v-text="tag.name"></v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-layout>
+  </v-navigation-drawer>
+
+</v-layout>
 </template>
 
 <script>
 
 // import axios from "axios"
 
-const artistData = require('../../assets/api/artist.js')
+const artistData = require('../../assets/api/artist.js');
 
 export default {
   name: 'artist',
   data: () => ({
-    items: [
-      { active: true, title: 'Jason Oner', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-      { active: true, title: 'Ranee Carlson', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' },
-      { title: 'Cindy Baker', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' },
-      { title: 'Ali Connors', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }
-    ],
-    items2: [
-      { title: 'Travis Howard', avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg' }
-    ],
+    drawer: true,
     artists:[],
+    tags:[],
   }),
   methods:{
     cartView() {
@@ -80,7 +79,8 @@ export default {
     // console.log(artistData.artists[0].singerList.data.singerlist)
 
     this.artists = artistData.artists[0].singerList.data.singerlist;
-    console.log(this.artists)
+    this.tags = artistData.artists[0].singerList.data.tags.index;
+    // console.log(this.artists)
 
       // axios.get('/static/api/artist.json')
       // .then(function(res) {
