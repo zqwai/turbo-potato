@@ -31,30 +31,32 @@
 
 export default {
   name: 'list-header',
-  data: () => ({
-    menus: [
-      {
-        text: '推荐',
-        url: '/list',
-      },
-      {
-        text: '新歌',
-        url: '/new',
-      },
-      {
-        text: '排行榜',
-        url: '/billboard',
-      },
-      {
-        text: '专辑',
-        url: '/album',
-      },
-      {
-        text: '歌手',
-        url: '/artist',
-      },
-    ],
-  }),
+  data () {
+    return {
+      menus: [
+        {
+          text: '推荐',
+          url: '/list',
+        },
+        {
+          text: '新歌',
+          url: '/new',
+        },
+        {
+          text: '排行榜',
+          url: '/billboard',
+        },
+        {
+          text: '专辑',
+          url: '/album',
+        },
+        {
+          text: '歌手',
+          url: '/artist',
+        },
+      ],
+    }
+  },
 }
 </script>
 

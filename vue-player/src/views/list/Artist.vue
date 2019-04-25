@@ -1,7 +1,7 @@
 <template>  
 <v-layout relative>
 
-  <v-card>
+  <v-card width="100%">
     <v-list subheader>
       <v-subheader >热门</v-subheader>
       <v-list-tile
@@ -10,16 +10,13 @@
         avatar
       >
         <v-list-tile-avatar>
-          <img :src="artist.singer_pic">
+          <img :src="artist.img1v1Url">
         </v-list-tile-avatar>
 
         <v-list-tile-content>
           <v-list-tile-title>
-            {{artist.singer_name}}
+            {{artist.name}}
           </v-list-tile-title>
-          <v-list-tile-sub-title>
-            {{ index }} - {{artist.country}}
-          </v-list-tile-sub-title>
         </v-list-tile-content>
 
       </v-list-tile>
@@ -28,7 +25,7 @@
   </v-card>
 
 
-  <v-navigation-drawer
+  <!-- <v-navigation-drawer
     v-model="drawer"
     class="pb-0"
     hide-overlay
@@ -50,47 +47,51 @@
         </v-list-tile>
       </v-list>
     </v-layout>
-  </v-navigation-drawer>
+  </v-navigation-drawer> -->
 
 </v-layout>
 </template>
 
 <script>
 
-// import axios from "axios"
-
-const artistData = require('../../assets/api/artist.js');
+import axios from "axios"
+// 本地存储
+import storage from '../../model/storage';
 
 export default {
   name: 'artist',
-  data: () => ({
-    drawer: true,
-    artists:[],
-    tags:[],
-  }),
+  data() {
+    return {
+      drawer: true,
+      artists: {},
+      tags: {},
+    }
+  },
   methods:{
     cartView() {
-      console.log(this.text)
+      // console.log(this.text)
     }
   },
   created () {
-    // this.artists = artistData.artists;
-    console.log(artistData.artists[0].singerList.data)
-    // console.log(artistData.artists[0].singerList.data.singerlist)
+    // 判断本地localStorage 是否存在artists
+    if (localStorage.getItem("artists") != null) {
+      // console.log(storage.get('artists'))
+      this.artists = storage.get('artists')
+    } else {
+      // 获取歌手
+      axios.get('http://localhost:3000/toplist/artist')
+      .then((data) => {
+        // console.log(data.data);
+        this.artists = data.data.list.artists
+        // 保存数据
+        storage.set('artists', this.artists);
+      })
+      .catch( (error) => {
+        console.log(error);
+      });
+    }
 
-    this.artists = artistData.artists[0].singerList.data.singerlist;
-    this.tags = artistData.artists[0].singerList.data.tags.index;
-    // console.log(this.artists)
-
-      // axios.get('/static/api/artist.json')
-      // .then(function(res) {
-      //   // return this.artists = res
-      //   console.log(res);
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      //   // return error
-      // });
+      
   }
 }
 </script>

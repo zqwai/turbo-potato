@@ -11,13 +11,16 @@
 
     <VBottomNav />
 
-    <VuetifyAudio 
-      :song="song"
-      
-      :ended="audioFinish"
-    ></VuetifyAudio>
   
     </v-flex>
+    <VuetifyAudio 
+      :song="song"
+      :ended="audioFinish"
+    >
+    </VuetifyAudio>
+
+    <!-- <VuetifyAudioList>
+    </VuetifyAudioList> -->
   </v-layout>
   </v-app>
 </template>
@@ -25,11 +28,14 @@
 <script>
 import VBottomNav from '@/components/public/VBottomNav'
 import VuetifyAudio from '@/components/player/VuetifyAudio'
+// import VuetifyAudioList from '@/components/player/VuetifyAudioList'
+
 export default {
-  name: 'App',
+  name: 'app',
   components: {
     VBottomNav,
-    VuetifyAudio
+    VuetifyAudio,
+    // VuetifyAudioList
   },
   methods: {
     audioFinish () {

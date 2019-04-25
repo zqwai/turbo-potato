@@ -1,5 +1,5 @@
 <template>
-  <section class="vplay-ui">
+  <section res="vplayui" class="vplay-ui">
 
   <v-slider
     class="playbar" 
@@ -11,7 +11,7 @@
 
     <audio
       id="player"
-      ref="player"
+      ref="audio"
       class="hide"
       name="media"
       :src="song.url"
@@ -22,7 +22,10 @@
       width="100%"
     >
       <v-list-tile>
-        <v-list-tile-avatar>
+
+        <v-list-tile-avatar
+          @click="openPlayDetil"
+        >
           <img :src="song.thumb">
         </v-list-tile-avatar>
 
@@ -85,7 +88,7 @@ export default {
   name: 'vuetify-audio',
   props: {
     song: {
-      file: {
+      url: {
         type: String,
         default: null
       },
@@ -114,47 +117,59 @@ export default {
   data () {
     return {
       firstPlay: true,
-      isMuted: false,
+      isMuted: false,//声音
       loaded: false,
-      playing: false,
-      paused: false,
-      percentage: 0,
-      currentTime: '00:00:00',
-      audio: undefined,
-      totalDuration: 0,
+      playing: false,//播放
+      paused: false,//暂停
+      percentage: 0,//播放进度
+      currentTime: '00:00:00',//当前播放时间
+      totalDuration: 0,//总播放时长
+      audio: undefined,//播放器dom
+      vplayui: undefined,//vplay ui dom
     }
   },
   methods: {
+    openPlayDetil () {
+      console.log('打开歌曲播放详情面板');
+
+    },
+    // playbar 点位 播放
     setPosition () {
+      // 当前时间更新
       this.audio.currentTime = parseInt(this.audio.duration / 100 * this.percentage);
-      
-      // if (this.playing) return
+      // 当前位置播放
       this.paused = false
       this.audio.play().then(() => this.playing = true)
     },
+    // 停止
     stop () {
       this.paused = this.playing = false
       this.audio.pause()
       this.audio.currentTime = 0
     },
+    // 播放
     play () {
       if (this.playing) return
       this.paused = false
       this.audio.play().then(() => this.playing = true)
     },
+    // 暂停
     pause () {
       this.paused = !this.paused;
       (this.paused) ? this.audio.pause() : this.audio.play()
     },
+    // 下载
     download () {
       this.audio.pause()
-      window.open(this.file, 'download')
+      window.open(this.song.url, 'download')
     },
+    // 声音
     mute () {
       this.isMuted = !this.isMuted
       this.audio.muted = this.isMuted
       this.volumeValue = this.isMuted ? 0 : 75
     },
+    // 重加载
     reload () {
       this.audio.load();
     },
@@ -188,7 +203,6 @@ export default {
 
     _handlePlayPause: function (e) {
       if (e.type === 'play' && this.firstPlay) {
-          // in some situations, audio.currentTime is the end one on chrome
           this.audio.currentTime = 0;
           if (this.firstPlay) {
               this.firstPlay = false;
@@ -202,6 +216,7 @@ export default {
     _handleEnded () {
       this.paused = this.playing = false;
     },
+
     init: function () {
       this.audio.addEventListener('timeupdate', this._handlePlayingUI);
       this.audio.addEventListener('loadeddata', this._handleLoaded);
@@ -217,7 +232,8 @@ export default {
     },
   },
   mounted () {
-    this.audio = this.$refs.player;
+    this.vplayui = this.$refs.vplayui;
+    this.audio = this.$refs.audio;
     this.init();
   },
   created () {
@@ -261,15 +277,5 @@ export default {
     height auto
     .v-input__slot
       margin-bottom 0
-    // .playline
-    //   width 100%
-    //   height 0.25rem
-    //   background rgba(0,0,0,.8);
-    //   position relative
-    //   overflow hidden
-    //   .playline_clone
-    //     width 40%
-    //     height 100%
-    //     background rgba(155,155,155,.8);
 
 </style>
